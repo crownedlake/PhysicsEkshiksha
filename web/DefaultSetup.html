@@ -1,0 +1,288 @@
+<html>
+
+	<head>
+			
+		<title>My first three.js app</title>
+		<meta charset="UTF-8">
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+                <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+            <script src="js/three.min.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="js/DragControls.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/ThreeCSG.js"></script>
+		<script src="js/stats.min.js"></script>
+		<script src="js/dat.gui.min.js"></script>
+		<script src="js/lights.js"></script>
+                <script src="js/background.js"></script>
+               
+                <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+		
+            <script>
+                
+                function load()
+                            {
+                        var exp=window.location.href.split("?")[2];
+                        console.log(exp);
+                        var id= exp.split("_")[1];
+                        $.ajax({
+                            url:'NewWrite',
+                            type:'POST',
+                            data:{
+                                'id':id
+                            },
+                            success:function(value){
+                                console.log(value);
+                                if(category==="optics")
+                                    $('body').append('<script>'+value+'go();<\/script>');
+                                else
+                                    $('body').append('<script>'+value+'<\/script>');
+                            },
+                            error:function(){
+                                alert("error");
+                            }
+                        });
+                    }
+                
+                var category=window.location.href.split("?")[1];
+                var exp=window.location.href.split("?")[2];
+                var id= exp.split("_")[1];
+                var ii=0;
+                var l;
+                function incr(){
+                    ii++;
+                    if(ii===(l)){ load();}
+                }
+                if(category==='Mechanics')
+                {
+                    
+                $.ajax({
+                        type:'GET',  
+                        url: 'DataServlet?category=Mechanics&&object=',
+                        datatype:"json",
+                        error : function(){
+                              alert("Error Occured");
+                        },
+                        success: function(response) {
+                            var object = JSON.parse(response);
+                            l=object.length;
+                            
+                            for(x in object){
+                               
+                                var temp = document.createElement('script');
+                                temp.setAttribute('src','js/'+object[x].file+'.js');
+                                temp.setAttribute('onload','incr()');  
+                                
+                                document.head.appendChild(temp);
+                                
+                                
+           
+           
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    var temp=document.createElement("script");
+                    temp.setAttribute('src','js/optics_objects.js');
+                    document.head.appendChild(temp);
+                    
+                    temp=document.createElement("script");
+                    temp.setAttribute('src','js/optics.js');
+                    temp.setAttribute('onload','load()')
+                    document.head.appendChild(temp);
+                    
+                    
+                }
+            </script>
+		<script type="text/javascript">
+		 
+
+		function setLights(){
+
+                    var ambientLight;
+                    var spotLight;
+                    ambientLight = new THREE.AmbientLight(16777215, 0.5);
+                    ambientLight.position.set(-100,0,0);
+                    scene.add(ambientLight);
+                    spotLight = new THREE.PointLight(16777215);
+                    spotLight.position.set(60,10,40);
+                    spotLight.castShadow = true;
+                    scene.add(spotLight);
+                    ambientLight = new THREE.AmbientLight(16777215, 0.5);
+                    ambientLight.position.set(-100,100,100);
+                    scene.add(ambientLight);
+            
+		}
+
+		function setCamera(){
+
+			camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 0.1, 1000 );
+			camera.position.z = 60;
+
+
+		}
+		function setDragControls(){
+
+
+			dragControls = new THREE.DragControls( dragElements, camera, renderer.domElement );
+			dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; } );
+			dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; } );
+
+		}
+                
+		function sceneCreation(){
+
+			scene = new THREE.Scene();
+			renderer = new THREE.WebGLRenderer({
+                            antialias:true 
+                        });
+                        renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize( window.innerWidth, window.innerHeight );
+                        renderer.gammaInput = true;
+                        renderer.gammaOutput = true;
+                        renderer.shadowMap.enabled = true;
+                        
+                         document.body.appendChild( renderer.domElement );
+                    }
+		function setOrbitControls(){
+
+			 controls = new THREE.OrbitControls(camera,renderer.domElement);
+
+		}
+		
+		function updateMaterial(object,value)
+                {
+                    //var value = cube.parameters.material;
+                    var newMaterial;
+                    if (value === "Basic")
+                        newMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+                    else if (value === "Lambert")
+                        newMaterial = new THREE.MeshLambertMaterial( { color: 0x000000 } );
+                    else if (value === "Phong")
+                        newMaterial = new THREE.MeshPhongMaterial( { color: 0x000000 } );
+                    else // (value == "Wireframe")
+                        newMaterial = new THREE.MeshBasicMaterial( { wireframe: true } );
+                    object.material = newMaterial;
+                    object.material.color.setHex( object.parameters.color.replace("#", "0x") );
+                    object.material.opacity = object.parameters.opacity;  
+                    object.material.transparent = true;
+                    object.visible = object.parameters.visible;
+                //    render();
+                }
+                /**/
+                window.addEventListener( 'resize', onWindowResize, false );
+
+
+                function onWindowResize(){
+
+                                camera.aspect = window.innerWidth / window.innerHeight;
+                                camera.updateProjectionMatrix();
+
+                                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                }
+                
+        
+			
+		</script>
+		<script>
+			
+		
+                        	
+			</script>
+                        
+                
+                
+			<script>
+                            
+                </script>
+                <!--script src="js/cube.js"></script>
+		<script src="js/cuboid.js"></script>
+                <script src="js/sphere.js"></script>
+                <script src="js/cone.js"></script>
+                <script src="js/cylinder.js"></script>
+                <script src="js/spring.js"></script>
+                <script src="js/wedge.js"></script>
+                <script src="js/weigh.js"></script>
+                <script src="js/springbalance.js"></script>
+                <script src="js/optics_objects.js"></script>
+                <script src="js/pulley.js"></script>
+                <script src="js/cart.js"></script>
+                <script src="js/heart.js"></script>
+                <!--script src="js/optics_objects.js"></script>
+                <script src="js/optics.js"></script-->
+                <script>
+                      var objects = [];
+			var dragElements = [];
+			var camera;
+			var scene;
+			var renderer;
+			var dragControls;
+			var drag=false;
+			var raycaster;
+			var dragObj=null;
+			var gui;
+			var gui1;
+			var collidableMeshList=[];
+			
+                        if(category!=='optics')
+                            sceneCreation();
+	
+    setCamera();
+			
+			//setBackground();
+			//setLights();
+			
+                        setDragControls();
+			var renderM = function () {
+				requestAnimationFrame(renderM);
+                                try{
+                                animation();
+                            }catch(err)
+                            {
+                                console.log(err);
+                            }
+				renderer.render(scene,camera);
+			};
+                    
+                        try{
+                        if(category!=='optics')
+                            renderM();
+                        
+                        }catch(err){
+                            
+                        }
+                        var UserControlGUI=new dat.GUI();
+                        var UserDisplayGUI=new dat.GUI();
+                        function UserControlPanel(mina,maxa,stepa,vara,namea,functiona){
+                            var parameters={
+                              x: eval(vara)
+                            };
+                            UserControlGUI.add(parameters,'x').min(mina).max(maxa).step(stepa).name(namea).listen().onChange(function(value){functiona(value);});
+
+                        }
+
+                        function UserDisplayPanel(variableName){
+                            var parameters={
+                              x: eval(variableName)
+                            };
+                            UserDisplayGUI.add(parameters, 'x').name(variableName).listen();
+                            var update = function() {
+                            requestAnimationFrame(update);
+                            parameters.x = eval(variableName);
+
+                            };
+
+                            update();
+                        }
+		</script>
+		
+	</body>
+</html>

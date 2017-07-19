@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>Select-Objects</title>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href="https://codemirror.net/lib/codemirror.css">
+  <link rel='stylesheet prefetch' href="https://codemirror.net/theme/blackboard.css">
+  <link rel='stylesheet prefetch' href="css/Objects.css">
+ 
+
+</head>
+
+<body translate="no" >
+
+  
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+<div class="main" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div class="edi" >Enter The Animation Code<textarea id="int"></textarea><button onclick="anim()">OK</button></div>
+<div class="s_edi" >Enter The Static Code<textarea id="s_int"></textarea><button onclick="s_anim()">OK</button></div>
+<!-- nav menu -->
+<div id="menu">
+    <a href="index.html"><h2 class="menu-title">EkShiksha<br>Physics</h2></a>
+ <ul id="navigation">
+   <!--li onclick="show_toggle(this)"><span value="Basic">Basic Details</span></li-->
+    <li onclick="show_toggle(this)"><span value="Theme">Change Theme</span></li>
+    <li onclick="show_toggle(this)"><span value="Object">Choose Objects</span></li>
+    <li onclick="show_toggle(this)" id = "aniEdi"><span value="Animation">Animation Code Editor</span></li>
+   <li onclick="show_toggle(this)"><span value="Drag">Drag/Drop Control Editor</span></li>
+   
+   <li onclick="show_toggle(this)"><span value="User">User Control</span></li>
+   <li onclick="show_toggle(this)"><span value="UserD">User Display</span></li>
+   <li onclick="show_toggle(this)" id = "staticEditor"><span value="staticAnimation">Static Code Editor</span></li>
+   <li onclick="save()"><span>Save Progress</span></li>
+   <li onclick="saveas()"><span>Save as</span></li>
+   <li onclick="guiLightAdd()"><span>Light</span></li>
+   
+			</ul>
+  <div class="bottom">
+   
+   
+  </div>
+  <span class="background"></span>
+  <a href="" id="cross"></a>
+</div>
+
+
+  <img class="button-menu" src="http://www.freeiconspng.com/uploads/settings-icon-6.png"></img>
+
+<!-- nav menu end -->
+<!-- theme change prompt-->
+<div class="float-Theme float" style="width:30%;display:none;" onmousedown="drag_mousedown(this)" >
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="Theme" >Change Theme</div>
+    <div class="float-Theme-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+    <br>
+    <div class="Theme row">
+     
+      <!-- database call -->
+      
+        <div class="col-xs-6"> <button  name="back" value="setBackground1" onclick="updateBackground('setBackground1')"><span>setBackground1 <span><!--img src="http://www.drodd.com/images14/blue22.jpg" style="width:40px;"--></button></div>
+        <div class="col-xs-6"> <button  name="back" value="setBackground2" onclick="updateBackground('setBackground2')"><span>setBackground2 <span><!--img src="http://www.drodd.com/images14/blue22.jpg" style="width:40px;"--></button></div>
+        <div class="col-xs-6"> <button  name="back" value="setBackground3" onclick="updateBackground('setBackground3')"><span>setBackground3 <span><!--img src="http://www.drodd.com/images14/blue22.jpg" style="width:40px;"--></button></div>
+        <div class="col-xs-6"> <button  name="back" value="setBackground4" onclick="updateBackground('setBackground4')"><span>setBackground4 <span><!--img src="http://www.drodd.com/images14/blue22.jpg" style="width:40px;"--></button></div>
+        <div class="col-xs-6"> <button  name="back" value="setBackground5" onclick="updateBackground('setBackground5')"><span>setBackground5 <span><!--img src="http://www.drodd.com/images14/blue22.jpg" style="width:40px;"--></button></div>
+ 
+    
+    </div>
+  </div>
+  <div class="okay"><button>OK</button></div>
+</div>
+<!-- theme changer end-->
+<!-- basic info prompt -->
+<div class="float-Basic float" style="width:20%;display:none;" onmousedown="drag_mousedown(this)">
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="Basic">Basic Info </div>
+    <div class="float-Basic-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+    <div class="BasicInfo row">
+      <form>
+        <span>Exp name:</span><br>
+        <input type="text" name="Expname">
+        <br>
+        <span>Author name:</span><br>
+        <input type="text" name="Authorname">
+        <br> </form>
+    </div>
+  </div>
+    <div class="okay"><button onclick="if(saveasflag)saveas(); else save();">Submit</button></div>
+</div>
+<!-- basic info prompt end -->
+<!-- object chooser -->
+<div class="float-Object float" style="width:30%;display:none;" >
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="Object">Change Objects</div>
+    <div class="float-Object-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+    <br>
+    <div class="Object">
+     
+      <!-- database call -->
+      <div class="toolkit row text-center">
+  <!-- tools -->
+ </div>
+</div>
+  </div>
+  
+</div>
+<!-- object chooser ends -->
+<!-- drag/drop control -->
+<div class="float-Drag float" style="width:20%;display:none;" onmousedown="drag_mousedown(this)">
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="Drag">Drag/Drop Controller </div>
+    <div class="float-Drag-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+    <div class="drag-head">ObjectName</div>
+<div class="drag-hint">Enter a,b,c for the equation of form ax+by+c=0</div>
+<form class="drag-form">
+  <span>a</span><input type="text">
+   <span>b</span><input type="text">
+   <span>c</span><input type="text">
+</form>
+  </div>
+    
+  <div class="okay"><button onclick="pushObject($('form')[1][0].value,$('form')[1][1].value,$('form')[1][2].value)">Submit</button></div>
+</div>
+<!-- drag/drop control ends-->
+<!-- user control starts -->
+<div class="float-User float" style="width:20%;display:none;" onmousedown="drag_mousedown(this)">
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="User">User Controls </div>
+    <div class="float-User-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+   
+<div class="user_control">
+  <div class="usr_cd">
+     <form class="ucform">
+  <span>variable name:</span><input name="varname" type="text"></input>
+  <span>display name:</span><input name="disname" type="text"></input>
+  <span>min:</span><input name="min" type="text"></input>
+  <span>max:</span><input name="max" type="text"></input>
+  <span>step:</span><input name="step" type="text"></input>
+  <br>
+  <span>on change code:</span><textarea name="code" type="text"></textarea>
+  </form>
+</div>
+</div>
+<!--div class="add" onclick="add_userControl()">+</div-->
+  </div>
+    <div class="okay"><button onclick="usercontrol('UserControlPanel');">Submit</button></div>
+</div>
+
+<!-- user controls ends -->
+<!-- user control display-->
+
+<div class="float-UserD float" style="width:20%;display:none;" onmousedown="drag_mousedown(this)">
+  <div class="row header">
+    <div class="float-head text-center col-xs-9" value="User">User Controls(Display)</div>
+    <div class="float-UserD-cancel  col-xs-3" onclick="cancel(this)">X</div>
+  </div>
+  <div class="content">
+   
+<div class="user_controlD">
+ <div class="usr_d">
+     <form class="udform">
+  <span>Name:</span><input name="variable" type="text">
+  
+  </form>
+</div>
+    <div class="okay"><button onclick="usercontrol('UserDisplayPanel');">Submit</button></div>
+</div>
+<!--div class="addD" onclick="add_userControlD()">+</div>
+  </div>
+  <div class="okay"><button>Submit</button></div-->
+</div>
+</div>
+
+
+<!-- user  control display ends-->
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js'></script>
+<script src="https://codemirror.net/lib/codemirror.js"></script>
+<script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+<script src='https://www.lequipe.fr/Football/Coupe-du-monde/Mundial-Memories/js/TweenLite.js'></script>
+
+        <script src="js/OrbitControls.js"></script>
+        <script src="js/DragControls.js"></script>
+        <script src="js/TrackballControls.js"></script>
+        <script src= "js/ThreeCSG.js"></script>
+        <script src="js/dat.gui.min.js"></script>
+        <script src="js/lights.js"></script>
+        <script src="js/optics_objects.js"></script>
+        <script src="js/background.js"></script>
+        <div class="staticcode"></div>
+    <script>
+var sel_objects = [];
+  // THREE js   
+    var saveasflag=0;
+    var count=0;
+    var objects=[];
+    var dragElements=[];
+    var gui;
+   var saved=0;
+   var camerapositions;
+   var lightArray=[];
+   var background="setBackground1";
+   var scene = new THREE.Scene();
+   var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1 , 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor(0x4FBFFE);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 60;
+    camerapositions=camera.positions;
+    camera.lookAt(scene.position);
+    var collidableMeshList=[];
+    
+    
+        
+    var controls = new THREE.OrbitControls(camera,renderer.domElement);
+    </script>
+    <script>
+    
+		var path="";
+                var aniCode;
+                var category=window.location.href.split("?")[1];
+   var dragControls=function(){
+       var dragControls = new THREE.DragControls( dragElements, camera, renderer.domElement );
+    dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; IsDragRunning = true;} );
+    dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; IsDragRunning = false;} );
+   };          
+                
+                
+               if(category === "Mechanics")
+               {
+                   var dragControls = new THREE.DragControls( dragElements, camera, renderer.domElement );
+                    dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; IsDragRunning = true;} );
+                    dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; IsDragRunning = false;} );
+   
+                   $('#aniEdi').css("display","block");
+                   $('#staticEditor').css("display","block");
+                   $.ajax({
+		type:'GET',  
+                url: 'DataServlet?category='+category+'&&object=',
+		  datatype:"json",
+		  error : function(){
+		      console.log("Error Occured");
+		   },
+		  success: function(response) {
+		 var object = JSON.parse(response);
+                                  
+                var t = "";
+                
+		for(x in object){
+		  var temp = document.createElement('script');
+            t += '<div class="'+object[x].name+' col-md-6 col-xs-12" ><img draggable="true" ondragstart="drag(event)" class="img-fluid" src="images/'+object[x].icon+'" id="'+object[x].func+'"></div>';     
+		temp.setAttribute('src','js/'+object[x].file+'.js');
+		document.head.appendChild(temp);
+                
+		}
+            $('.toolkit').html(t);
+            if(window.location.href.split("?").length===3)
+                {
+                    
+                    saved=1;
+                    var exp=window.location.href.split("?")[2];
+                    console.log(exp);
+                    var id=exp.split("_")[1];
+                    expname=exp.split("_")[0];
+                    $.ajax({
+                       url:'New',
+                       type:'GET',
+                       data:{
+                           'id':id
+                       },
+                       error:function(){
+                           alert("error");
+                       },
+                       success:function(value){
+                           console.log("id is set");
+                           
+                       }
+                    });
+                    $.ajax({
+                        url:'NewWrite',
+                        type:'POST',
+                        data:{
+                          'id':id  
+                        },
+                        error:function(){
+                            alert("Error in writing");
+                        },
+                        success:function(value){
+                            console.log(value);
+                            aniCode=value;
+                            var str=aniCode;
+                            if(str!=="")
+                            {
+                                var str1 = str.split('/*;*/');
+                                console.log(str1[1]);
+                                if(str1.length>0)
+                                    {
+                                       
+                                       editor.setValue(str1[1].split("").slice(str1[1].indexOf('{')+1,-1).join(""));
+                                       s_editor.setValue(str1[2]);
+                                   }
+                                   
+                                   
+                               }
+                            $('body').append('<script>'+value+'<\/script>');
+                                    
+                        }
+                    });
+                
+                }
+                else
+                {
+                    saved=0;
+                    
+                    $.ajax({
+                   url:'New',
+                   type:'GET',
+                   data:{
+                       'id':'-1'
+                   },
+                   error:function(){
+                       alert("error");
+                   },
+                   success:function(value){
+                       console.log("id is value");
+                       
+                   }
+                }); 
+                setBackground1();
+                }
+            }
+       });
+               }
+                else if(category === "optics"){
+                    console.log("1");
+                    
+                    $.ajax({
+		type:'GET',  
+                url: 'DataServlet?category='+category+'&&object=',
+		  datatype:"json",
+		  error : function(){
+		      console.log("Error Occured");
+		   },
+		  success: function(response) {
+		 var object = JSON.parse(response);
+                                  
+                var t="";
+                
+		for(x in object){
+		  var temp = document.createElement('script');
+            t += '<div class="'+object[x].name+' col-md-6 col-xs-12" ><img draggable="true" ondragstart="drag(event)" class="img-fluid" src="images/'+object[x].icon+'" id="'+object[x].func+'"></div>';     
+		}
+                var temp = document.createElement('script');
+                temp.setAttribute('src','js/optics_objects.js');
+                
+                document.head.appendChild(temp);
+            $('.toolkit').html(t);
+            if(window.location.href.split("?").length===3)
+                {
+                    
+                    saved=1;
+                    var exp=window.location.href.split("?")[2];
+                    console.log(exp);
+                    var id=exp.split("_")[1];
+                    expname=exp.split("_")[0];
+                    $.ajax({
+                       url:'New',
+                       type:'GET',
+                       data:{
+                           'id':id
+                       },
+                       error:function(){
+                           alert("error");
+                       },
+                       success:function(value){
+                           console.log("id is set");
+                           
+                       }
+                    });
+                    $.ajax({
+                        url:'NewWrite',
+                        type:'POST',
+                        data:{
+                          'id':id  
+                        },
+                        error:function(){
+                            alert("Error in writing");
+                        },
+                        success:function(value){
+                            console.log(value);
+                            aniCode=value;
+                            
+                            $('body').append('<script>'+value+'go();<\/script>');
+                                    
+                        }
+                    });
+                
+                }
+                else
+                {
+                    saved=0;
+                    
+                    $.ajax({
+                   url:'New',
+                   type:'GET',
+                   data:{
+                       'id':'-1'
+                   },
+                   error:function(){
+                       alert("error");
+                   },
+                   success:function(value){
+                       console.log("id is value");
+                       
+                   }
+                });
+                
+                setBackground1();
+                }
+                }
+                });
+            }
+		
+       
+		  
+		
+                
+                
+		</script>
+    <script>
+    
+    function dragConstraints(elem,a,b,c){
+        		
+        		var x = elem.position.x;
+        		var y = elem.position.y;	
+                        
+        		if( (a*x + b*y + c) !== 0 ){
+
+        			elem.position.x = x;
+        			if(b!==0)
+        				elem.position.y = (-c - a*x) / b;
+        			if(b ===0 ){
+        				elem.position.x = -c/a;
+        			}
+
+        		}
+                    }
+
+
+     var custom_ani = function(){
+  console.log("working");
+  
+};
+var staticAnimationDone = false;
+function s_anim(){
+    
+  s_code = s_editor.getValue();
+  custom_s_ani = new Function("",s_code);
+  staticAnimationDone = true;
+ sh("s_edi");
+}
+function setCamera(pos)
+{
+    camerapositions=pos;
+}
+function anim(){
+  code = editor.getValue();
+  custom_ani = new Function("",code);
+ sh("edi");
+}
+	var objectDragging;
+ if(category === "Mechanics"){   
+
+
+    var IsDragRunning  = false;
+        var objectDragging;
+var collidableMeshList = [];           
+            
+            
+            
+    
+var parameter = 0.5;
+        	var arrayreq ;
+        	function checkForIntersection(){
+        			
+        	//		console.log("checkForIntersection and you're dragging "+objectDragging.name);
+					var MovingCube = objectDragging;
+					var originPoint = MovingCube.position.clone();
+				    arrayreq = [] ;
+					for(var i=0;i<collidableMeshList.length;i++){
+						if(objectDragging!=collidableMeshList[i])
+						{	arrayreq.push(collidableMeshList[i]);console.log("adding"+collidableMeshList[i].name);}
+					}
+					for (var vertexIndex = 0; vertexIndex < MovingCube.geometry.vertices.length; vertexIndex++)
+					{		
+						var localVertex = MovingCube.geometry.vertices[vertexIndex].clone();
+						var globalVertex = localVertex.applyMatrix4( MovingCube.matrix );
+						var directionVector = globalVertex.sub( MovingCube.position );
+						
+						var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+						var collisionResults = ray.intersectObjects( arrayreq );
+						if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ) {
+								console.log(MovingCube.name + " collided with "+collisionResults[0].object.name);
+								console.log(collisionResults[0].object.name);
+								if(MovingCube.position.x < collisionResults[0].object
+								.position.x)
+									//collisionResults[0].object
+								//.position.x += parameter;
+								if(MovingCube.position.x >= collisionResults[0].object
+								.position.x)
+									//collisionResults[0].object
+								//.position.x -= parameter;
+								if(MovingCube.position.y < collisionResults[0].object
+								.position.y)
+									//collisionResults[0].object
+								//.position.y += parameter;
+								if(MovingCube.position.y > collisionResults[0].object
+								.position.y)
+									collisionResults[0].object
+								//.position.y -= parameter;
+						//		render();
+						}
+								//sphere.visible = false;
+					}
+				
+			
+        	}
+			document.addEventListener("mousedown",onDocumentMouseDown);
+			var raycaster;
+			function onDocumentMouseDown(event) {
+				// event.preventDefault();
+				var mouse;
+				mouse = new THREE.Vector2(); 
+			  
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		     	raycaster = new THREE.Raycaster();
+			    raycaster.setFromCamera(mouse, camera);
+			    var intersects = raycaster.intersectObjects(objects, true);
+			    
+			    if (intersects.length > 0) {
+			    	if(IsDragRunning == true){
+			    		objectDragging = intersects[0].object;
+                                        console.log("akshit"+objectDragging);
+                       $('.drag-head').html(objectDragging);
+                        sh('float-Drag');
+                        
+                        if(gui){
+                            gui.destroy();
+                            console.log("destroying");
+                             gui = new dat.GUI();
+                            console.log("creating");
+                        }else{
+                            gui = new dat.GUI();
+                            console.log("creating");
+    
+                         }
+    //if(intersects[0].object.name === "object[0]")
+    
+                        intersects[0].object.gui(intersects[0].object);
+			 			
+			        }    
+     			
+				    console.log(IsDragRunning );
+				    if(objectDragging)
+				    	console.log(objectDragging.name);
+			    }
+			//document.addEventListener("mousemove",onDocumentMouseMove);
+			var raycaster;
+			/*function onDocumentMouseMove(event) {
+				// event.preventDefault();
+				if(IsDragRunning && objectDragging){
+					console.log("narendra bro currently you are dragging "+objectDragging.name);
+				
+			//		checkForIntersection();
+				}
+			}*/
+}
+$('.main').append( renderer.domElement );
+renderScene();
+} else if (category === "optics"){
+            var temp=document.createElement("script");
+            temp.setAttribute('src','js/optics.js');
+            temp.setAttribute('onload','go();');
+            document.head.appendChild(temp);
+			
+}
+function developer(){
+    console.log("Akshit\n"+"Anupam\n"+"Reshabh\n"+"Pragati\n"+"Somya\n"+"Sachin<3Snaily");
+}
+function bhai(){
+    console.log("Reshabh<3Aanchal");
+}
+function pushObject(a,b,c){
+var temp ;
+temp = [objectDragging,a,b,c];
+
+alert("kk"+objectDragging+" " +a+" "+b+" "+c);
+var i;
+for( i=0;i<sel_objects.length;i++){
+    if(objectDragging === sel_objects[i][0]){
+        sel_objects[i][1] = parseInt(a);
+        sel_objects[i][2] = parseInt(b);
+        sel_objects[i][3] = parseInt(c);
+        break;
+    }
+}
+if(i === sel_objects.length)
+    sel_objects.push(temp);
+console.log("rishabh f.o");
+}
+function updateMaterial(object,value)
+{
+    //var value = cube.parameters.material;
+    var newMaterial;
+    
+    if (value === "Basic")
+        newMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+    else if (value === "Lambert")
+        newMaterial = new THREE.MeshLambertMaterial( { color: 0x000000 } );
+    else if (value === "Phong")
+        newMaterial = new THREE.MeshPhongMaterial( { color: 0x000000 } );
+    else // (value == "Wireframe")
+        newMaterial = new THREE.MeshBasicMaterial( { wireframe: true } );
+    object.material = newMaterial;
+    object.material.color.setHex( object.parameters.color.replace("#", "0x") );
+    object.material.opacity = object.parameters.opacity;  
+    object.material.transparent = true;
+    object.visible = object.parameters.visible;
+//    render();
+}
+function resetObject(object)
+{
+    object.parameters.color = "#ff0000";
+    object.parameters.opacity = 1;
+    object.parameters.visible = true;
+    object.parameters.material = "Phong";
+    updateMaterial(object,"Phong");
+}
+function renderScene(){
+    try{
+    custom_ani();
+    }catch(err)
+    {
+        console.log(err);
+    }
+    if(staticAnimationDone){
+         console.log('old : ' + $('.staticcode').text());
+        $('.staticcode').empty();
+        console.log('new: ' + $('.staticcode').text());
+        $('.staticcode').append("<script>try{"+s_code+"}catch(err){console.log(err);}<\/script>");
+        /*try{
+            custom_s_ani();
+        }catch(err)
+        {
+            console.log(err);
+        }*/
+        staticAnimationDone = false;
+    }
+    requestAnimationFrame (renderScene);
+    for(var i = 0; i<sel_objects.length ;i++){
+        console.log(sel_objects);
+        dragConstraints(sel_objects[i][0],sel_objects[i][1],sel_objects[i][2],sel_objects[i][3]);
+    }
+    renderer.render(scene , camera);
+}
+// THREE js ends
+// Animation editor 
+var editor = CodeMirror.fromTextArea(document.getElementById("int"), {
+    lineNumbers: false,
+    styleActiveLine: true,
+    matchBrackets: true,
+   mode:"javascript",
+   theme:"blackboard"
+  });
+  // Static code editor
+var s_editor = CodeMirror.fromTextArea(document.getElementById("s_int"), {
+    lineNumbers: false,
+    styleActiveLine: true,
+    matchBrackets: true,
+   mode:"javascript",
+   theme:"blackboard"
+  });
+// Hide or show a div
+function sh(cl){
+ x = $('.'+cl)[0];
+   if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+// Drag/drop
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+  console.log(ev.target);
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+    count=objects.length;
+    
+ var x=ev.clientX;
+ var y=ev.clientY;
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var temp = window[data]();
+    
+    console.log("Dragged");
+   scene.add(temp);
+  
+    if(category !== "optics")
+    {temp.position.set(-((-( x / window.innerWidth )*2+1)*40), (-( y / window.innerHeight )*2  +1)*20,0.5);}
+    else
+    {temp.position.set(-((-( x / window.innerWidth )*2+1)*40),0,0.5);go();}
+
+  //ev.target.appendChild(document.getElementById(data));
+  }
+// nav menu 
+$(".button-menu").click(function(e){ 
+			e.preventDefault();
+	    	$('body').addClass("menu-active");
+	    	showMenu();
+	    });
+	    $("#cross").click(function(e){
+	    	e.preventDefault();
+	    	hideMenu();
+	    });
+	    $(".black-back span").click(function(e){
+		    hideMenu();
+		});
+function showMenu(){
+			TweenLite.set('.black-back', {display:'block',opacity:0});
+			TweenLite.set('header', {display:'none',opacity:0});
+			TweenLite.to('#menu', 0.35, {left:'0',ease:Power3.easeOut});
+			TweenLite.to('.superglobale', 0.35, {left:'0',ease:Power3.easeOut});
+			TweenLite.set('#cross', {right:'-40px',ease:Power2.easeOut,delay:0.35});
+			TweenLite.to('.black-back', 0.25, {opacity:0.6,background:'black',ease:Power2.easeOut,delay:0.10});
+		}
+		function hideMenu(){
+			TweenLite.to('#menu', 0.35, {left:'-300px',ease:Power3.easeOut});
+			TweenLite.to('.superglobale', 0.35, {left:'-300px',ease:Power3.easeOut});
+			TweenLite.set('#cross', {right:0,ease:Power2.easeIn,delay:0.35});
+			TweenLite.to('.black-back', 0.25, {opacity:0,ease:Power2.easeOut,delay:0.10});
+			TweenLite.set('.black-back', {display:'none',background:'transparent',delay:0.35});
+			TweenLite.set('header', {display:'block',opacity:1});
+		}
+function show_toggle(e){
+if(e.style.borderColor==="") e.style.borderColor = "yellow";
+  else e.style.borderColor = "";
+//var temp = e.childNodes[0].innerHTML;
+var temp = "float-"+e.childNodes[0].attributes[0].value;//temp.split(" ")[0];
+console.log(temp);
+
+                            
+if(temp === "float-Animation"){ 
+    sh("edi"); 
+    /*var str=aniCode;
+    if(str!=="")
+    {
+        var str1 = str.split('/*;');
+        console.log(str1[1]);
+        if(str1.length>0)
+            {
+               console.log(str1[1].split("").slice(str1[1].indexOf('{')+1,-1).join(""));
+               editor.setValue(str1[1].split("").slice(str1[1].indexOf('{')+1,-1).join(""));
+               console.log("get");
+               console.log(editor.getValue());
+           }
+       }
+*/}
+else if(temp === "float-staticAnimation"){ 
+    
+            sh("s_edi");/*
+            var str=aniCode;
+    if(str!=="")
+    {var str1 = str.split('/*;');
+    console.log(str1[2]);
+     if(str1.length>0)
+            {
+                console.log("Hiii");
+               s_editor.setValue(str1[2]);
+               
+           }
+       }*/
+        }
+else 
+sh(temp);
+}
+// drag control functions 
+ var selected = null, 
+    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+// Will be called when user starts dragging an element
+function _drag_init(elem) {
+    // Store the object of the element which needs to be moved
+    selected = elem;
+    x_elem = x_pos - selected.offsetLeft;
+    y_elem = y_pos - selected.offsetTop;
+}
+// Will be called when user dragging an element
+function _move_elem(e) {
+    x_pos = document.all ? window.event.clientX : e.pageX;
+    y_pos = document.all ? window.event.clientY : e.pageY;
+    if (selected !== null) {
+        selected.style.left = (x_pos - x_elem) + 'px';
+        selected.style.top = (y_pos - y_elem) + 'px';
+    }
+}
+// Destroy the object when we are done
+function _destroy() {
+    selected = null;
+}
+// Bind the functions...
+drag_mousedown = function (e) {
+ 
+    _drag_init(e);
+    return false;
+};
+document.onmousemove = _move_elem;
+document.onmouseup = _destroy; 
+// cancel prompt
+function cancel(e){
+e=e.className.split(" ")[0].split("-");
+   sh(e[0]+"-"+e[1]);
+}
+// drag complications
+$('input').click(function() {
+    $(this).focus();
+});
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize(){
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+function updateBackground(value)
+{
+    console.log(layer);
+    background=value;
+    for(var i=0;i<layer.length;i++){
+        scene.remove(layer[i]);
+    }
+    console.log('layer');
+    
+    while(layer.length > 0) {
+       layer.pop();
+    }
+    
+    if(value==='setBackground1')
+    {
+        setBackground1();
+    }
+    else  if(value==='setBackground2')
+    {
+        setBackground2();
+    }
+    else if(value==='setBackground3')
+    {
+        setBackground3();
+    }
+    else if(value==='setBackground4')
+    {
+        setBackground4();
+    }
+}
+function usercontrol(panel)
+{
+    /*UserControlPanel(mina,maxa,stepa,vara,namea,functiona)*/
+    /*UserDisplayPanel(variableName)*/
+    
+    
+    var attr;
+    var changecode;
+    if(panel==='UserControlPanel')
+    {
+        var data=unescape($('.ucform').serialize());
+        var d=data.split("&");
+        var vname=d[0].split("=")[1];
+        var dname=d[1].split("=")[1];
+        var min=d[2].split("=")[1];
+        var max=d[3].split("=")[1];
+        var step=d[4].split("=")[1];
+        attr=min+','+max+','+step+','+vname+',"'+dname+'",change'+vname;
+        changecode=d[5].slice(d[5].indexOf("=")+1);
+    }
+    else
+    {
+        var data=unescape($('.udform').serialize());
+       
+        attr=data.split("=")[1];
+        changecode=""; 
+            console.log(data);
+    }
+    $.ajax({
+       url:'UserControl',
+       type:'POST',
+       data:{
+           'panel':panel,
+            'attr':attr,
+            'code':changecode
+       },
+       success:function(){
+           alert("user control set");
+       },
+       error:function(){
+           alert("error in user controls");
+       }
+    });
+}
+
+
+var flag=0;
+function newWrite(expname)
+{
+    $.ajax({
+        url:'NewWrite',
+        type:'POST',
+        error:function(){
+            alert("Error in writing");
+        },
+        success:function(value){
+            console.log(value);
+        }
+    });
+}
+function uploadcode(expname)
+{
+    $.ajax({
+       url:'UploadCode', 
+       type:'POST',
+       data:{
+         'animation':editor.getValue(),
+         'static':s_editor.getValue(),
+         'background':background
+       },
+       error:function(){
+           alert("error");
+       },
+       success:function(){
+           console.log("code written");
+           //newWrite();
+       }
+    });
+}
+function uploadLight(expname)
+{
+    flag=0;
+    for(var i=0;i<lightArray.length;i++)
+    {
+        var attr=lightArray[i].attr.split(",");
+        var values=lightArray[i].parameters[attr[0]];
+        var datatypes = typeof(lightArray[i].parameters[attr[0]]);
+        for(var j=1;j<attr.length;j++)
+        {
+            values+=","+lightArray[i].parameters[attr[j]];
+            datatypes+=","+typeof(lightArray[i].parameters[attr[j]]);
+            
+        }
+        $.ajax({
+            url:"UploadLight",
+            type:'POST',
+            data:{
+                'object':lightArray[i].type,
+                'name':'lightArray['+i+']',
+                'attributes':lightArray[i].attr,
+                'data':values,
+                'type':datatypes
+                
+            },
+            datatype:"json",
+            error: function(){
+              alert("error");  
+            },
+            success: function(){
+                console.log("Lights done");
+            }
+        });
+    }
+    
+}
+function upload(expname)
+{
+     flag=0;
+     for (var i =0;i<objects.length;i++)
+            {  
+                
+                var attr=objects[i].attr.split(",");
+                var values=objects[i].parameters[attr[0]];
+                var datatypes = typeof(objects[i].parameters[attr[0]]);
+                for(var j=1;j<attr.length;j++)
+                {
+                        values+=","+objects[i].parameters[attr[j]];
+                        datatypes+=","+typeof(objects[i].parameters[attr[j]]);
+                    }
+                    var x=Math.round(objects[i].position.x*100)/100;
+                    var y=Math.round(objects[i].position.y*100)/100;
+                    var z=Math.round(objects[i].position.z*100)/100;
+                    var positions=x+","+y+","+z;
+                    $.ajax({
+                    url:"Upload",
+                    type:'POST',
+                    data:{
+                        'object':objects[i].obj,
+                        'name':objects[i].name,
+                        'attributes':objects[i].attr,
+                        'data':values,
+                        'type':datatypes,
+                        'positions':positions,
+                        'status':objects[i].status
+                    },
+                    datatype:"json",
+                    error: function(){
+                      alert("error");  
+                    },
+                    success: function(){
+                        console.log("objects"+i);
+                        
+                    }
+                });
+                
+                objects[i].status=1;
+                console.log(objects[i].status);  
+            
+            
+        }
+            
+    }
+    var expname;
+    var authorname;
+function save(){
+   flag=0;
+   saveasflag=0;
+    if(saved===0)
+    {
+        $('.float-Basic').css("display","block");
+        var userBasicData = $('form').serialize().split('&').map(function(e){ 
+                                                             return e.split('=');});
+        if(userBasicData[0][1]!==""&&userBasicData[1][1]!=="")
+        {
+            expname=userBasicData[0][1];
+            authorname=userBasicData[1][1];
+            $.ajax({
+                url:"SaveAs",
+                type:'POST',
+                data:{
+                    'expname':expname,
+                    'authorname':authorname,
+                    'category':category,
+                    'background':background
+                },
+                datatype:"json",
+                error:function(){
+                    alert("Error Occured");
+                },
+                success:function(value){
+                    console.log(value);
+                    saved=1;
+                    uploadLight(expname);
+                    upload(expname);
+                    uploadcode(expname);
+                    alert("saved with name"+expname);
+                } 
+            });
+        }
+        else 
+        {
+            alert("Enter name");
+            $('.float-Basic').css("display","block");
+        }
+}
+else
+{
+    uploadLight(expname);
+    upload(expname);
+    if(category!=="optics")
+        uploadcode(expname);
+    alert("saved in "+expname);
+}
+
+}
+function saveas()
+{
+    if(saved===1)
+    {
+        saveasflag=1;
+        $('.float-Basic').css("display","block");
+        var userBasicData = $('form').serialize().split('&').map(function(e){return e.split('=');});
+       if(userBasicData[0][1]!==""&&userBasicData[1][1]!=="")
+        {
+            
+            var newexpname=userBasicData[0][1];
+            var newauthorname=userBasicData[1][1];
+            
+            $.ajax({
+                url:"NewSaveAs",
+                type:'POST',
+                data:{
+                    'expname':newexpname,
+                    'authorname':newauthorname,
+                    'category':category,
+                    'background':background
+                },
+                datatype:"json",
+                error:function(){
+                    alert("Error Occured");
+                },
+                success:function(value){
+                    console.log(value);
+                    var id=value;
+                    alert("saved with name "+newexpname);
+                   //write(id,newexpname);
+                   
+                }
+            });
+        }
+        else
+        {
+            alert("Enter new name and authname");
+            $('.float-Basic').css("display","block");
+        }
+    }
+    else
+    {
+        save();
+    }
+}
+</script>
+</body>
+</html>
